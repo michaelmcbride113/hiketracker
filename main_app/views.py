@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Hike
 from django.contrib.auth.views import LoginView
@@ -15,18 +15,23 @@ class Home(LoginView):
 
 class HikeCreate(LoginRequiredMixin, CreateView):
     model = Hike
-    fields = '__all__'
+    fields = ['name', 'location', 'difficulty', 'date', 'description']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class HikeUpdate(LoginRequiredMixin, UpdateView):
     model = Hike
-    fields = '__all__'
+    fields = ['name', 'location', 'difficulty', 'date', 'description']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class HikeDelete(LoginRequiredMixin, DeleteView):
     model = Hike
     success_url = '/hikes/'
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    def get_queryset(self):
+        return Hike.objects.filter(user=self.request.user)
 
 def signup(request):
     error_message = ''
@@ -35,7 +40,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('cat-index')
+            return redirect('hike-index')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
