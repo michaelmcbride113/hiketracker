@@ -3,8 +3,6 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
-# views.py
-
 class Hike:
     def __init__(self, name, location, difficulty, date, description):
         self.name = name
@@ -13,7 +11,6 @@ class Hike:
         self.date = date
         self.description = description
 
-# Create a list of Cat instances
 hikes = [
     Hike('Mt. Beacon', 'Beacon, NY', 'Medium', '4/5/2025', 'Fun hike, tough at the beginning but gets easier'),
     Hike('Breakneck Ridge', 'Cold Spring, NY', 'Medium', '4/6/2025', 'Fun hike, lots of scrambling'),
@@ -22,7 +19,7 @@ hikes = [
 
 
 def home(request):
-    return HttpResponse('<h1>Hello ᓚᘏᗢ</h1>')
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
