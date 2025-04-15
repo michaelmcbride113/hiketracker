@@ -11,4 +11,3 @@ urlpatterns = [
     path('hikes/<int:pk>/delete/', views.HikeDelete.as_view(), name='hike-delete'),
     path('accounts/signup', views.signup, name='signup'),
 ]
-
