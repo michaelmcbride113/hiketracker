@@ -14,6 +14,12 @@
       <h2>Difficulty: {{ hike.difficulty }}</h2>
       <h2>Date Completed: {{ hike.date }}</h2>
       <p>{{ hike.description }}</p>
+
+    <div class="hike-actions">
+        <a href="{% url 'hike-update' hike.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'hike-delete' hike.id %}" class="btn danger">Delete</a>
+      </div>
+    </div>
   </div>
 </section>
 {% endblock %}
