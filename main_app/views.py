@@ -1,6 +1,12 @@
 
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Hike
+
+class HikeCreate(CreateView):
+    model = Hike
+    fields = '__all__'
+    # success_url = '/hikes/'
 
 # class Hike:
 #     def __init__(self, name, location, difficulty, date, description):
