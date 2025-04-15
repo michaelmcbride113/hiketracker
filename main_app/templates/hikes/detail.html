@@ -1,25 +1,25 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/hikes/hike-detail.css' %}" />
-{% endblock %} 
+{% endblock %}
 {% block content %}
 <section class="hike-container">
-  <div class="hike-img">
-    <img src="{% static 'images/logo.png' %}" alt="Hike Tracker logo" />
-  </div>
-  <div class="hike-details">
-    <h1>{{ hike.name }}</h1>
-      <h2>Hike Location: {{ hike.location }}</h2>
-      <h2>Difficulty: {{ hike.difficulty }}</h2>
-      <h2>Date Completed: {{ hike.date }}</h2>
-      <p>{{ hike.description }}</p>
-
-    <div class="hike-actions">
-        <a href="{% url 'hike-update' hike.id %}" class="btn warn">Edit</a>
-        <a href="{% url 'hike-delete' hike.id %}" class="btn danger">Delete</a>
-      </div>
+    <div class="hike-img">
+        <img src="{% static 'images/logo.png' %}" alt="Hike Tracker logo" />
     </div>
-  </div>
+    <div class="hike-details">
+        <h1>{{ hike.name }}</h1>
+        <h2>Hike Location: {{ hike.location }}</h2>
+        <h2>Difficulty: {{ hike.difficulty }}</h2>
+        <h2>Date Completed: {{ hike.date }}</h2>
+        <p>{{ hike.description }}</p>
+
+        <div class="hike-actions">
+            <a href="{% url 'hike-update' hike.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'hike-delete' hike.id %}" class="btn danger">Delete</a>
+        </div>
+    </div>
+    </div>
 </section>
 {% endblock %}
